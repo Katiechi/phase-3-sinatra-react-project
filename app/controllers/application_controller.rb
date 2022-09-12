@@ -68,13 +68,14 @@ class ApplicationController < Sinatra::Base
   patch '/authors/:id' do
     @author = Author.find_by(id:params[:id])
     @author.update(name: params[:name], email: params[:email], password: params[:password])
-    redirect '/authors'
+    @author.to_json
   end
   #updates a specific post
   patch '/posts/:id' do
     @post = Post.find_by(id:params[:id])
     @post.update(title: params[:title], content:params[:content])
-    redirect '/posts'
+    @post.to_json
+
   end
   #Deletes a specific post
   delete '/posts/:id' do
